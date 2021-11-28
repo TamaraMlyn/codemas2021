@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="cs">
+    <title>Codemas 2021</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/css?family=Bevan|Press+Start+2P&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            <img src="images/darek1.png" alt="Vitamín">
+            <span id="score">0/6</span>
+        </div>
+
+        <div id="time">
+            00:00
+        </div>
+    </header>
+
+    <div id="game">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div id="end">
+        <video controls autoplay loop muted>
+            <source src="animations/codemas prohra.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <button onclick="location.reload()">Hrát znovu</button>
+    </div>
+
+    <div id="start">
+        <img src="images/codemasstart.svg" alt="start hry">
+        <p>Pojďme společně zachránit perníčkovi vánoce. Sesbírej co nejrychleji všechny předměty v bludišti, než ti
+            dojde čas.</p>
+        <button id="btn-start">Zahájit hru</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
