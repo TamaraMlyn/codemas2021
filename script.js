@@ -1,14 +1,14 @@
-let canvas = document.querySelector("#canvas")
-let width = 600
-let height = 600
-let ctx = canvas.getContext("2d")
-let blockSize = 30
+let canvas = document.querySelector('#canvas');
+let width = 600;
+let height = 600;
+let ctx = canvas.getContext('2d');
+let blockSize = 30;
 
-canvas.width = width
-canvas.height = height
+canvas.width = width;
+canvas.height = height;
 
-let wall = new Image()
-wall.src = "images/zed.png"
+let wall = new Image();
+wall.src = 'images/zed.png';
 
 let board = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -30,6 +30,17 @@ let board = [
   [1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1],
   [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ]
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+];
 
+for (let y = 0; y < board.length; y++) {
+  for (let y = 0; y < board.length; y++) {
+    for (let x = 0; x < board[y].length; x++) {
+      if (board[y][x] === 1) {
+        tx.drawImage(wall, x * blockSize, y * blockSize, blockSize, blockSize);
+      }
+    }
+  }
+}
+
+window.addEventListener('load', generateBoard);
