@@ -77,28 +77,33 @@ document.body.addEventListener("keyup", function(e) {
   draw()
 })
 
+function canMove(x, y) {
+  return (y >= 0 && y < board.length && x >= 0 && x < board[y].length && board[y][x] != 1)
+}
+
 function movement() {
-  if (keys[39]) {
+  if (keys[39] && canMove(player.x + 1, player.y)) {
       // šipka doprava
       hero.src = "images/right.png"
       player.x++
   }
 
-  if (keys[37]) {
+  if (keys[37] && canMove(player.x - 1, player.y)) {
       // šipka doleva
       hero.src = "images/left.png"
       player.x--
   }
 
-  if (keys[38]) {
+  if (keys[38] && canMove(player.x, player.y - 1)) {
       // šipka nahoru
       hero.src = "images/up.png"
       player.y--
   }
 
-  if (keys[40]) {
+  if (keys[40] && canMove(player.x, player.y + 1)) {
       // šipka dolů
       hero.src = "images/down.png"
       player.y++
   }
 }
+
