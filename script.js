@@ -33,7 +33,7 @@ let ponozky = new Image();
 ponozky.src = 'images/ponozky.png';
 
 let rukavice = new Image();
-rukavice.src = 'images/rukavice.png'
+rukavice.src = 'images/rukavice.png';
 
 let player = {
   x: 8,
@@ -64,9 +64,11 @@ let board = [
 ];
 
 let game = {
-  scoreElement: document.getElementById("score"),
-  score: 0
-}
+  timeElement: document.getElementById('time'),
+  scoreElement: document.getElementById('score'),
+  score: 0,
+  time: 0,
+};
 
 function generateBoard() {
   for (let y = 0; y < board.length; y++) {
@@ -110,8 +112,34 @@ function draw() {
 }
 
 function startGame() {
+  game.time = 60;
   createitems();
   draw();
+  timer()
+}
+
+function timer() {
+  function startTimer(duration, display) {
+    let timer = duration,
+      minutes,
+      seconds;
+
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      display.innerText = minutes + ':' + seconds;
+
+      if (--timer < 0) {
+        timer = duration;
+      }
+    }, 1000);
+  }
+
+  startTimer(game.time, game.timeElement);
 }
 
 window.addEventListener('load', startGame);
@@ -205,7 +233,7 @@ function createitems() {
     x: 14,
     y: 5,
     imageObject: rukavice,
-  })
+  });
 }
 
 function collect() {
@@ -221,6 +249,6 @@ function collect() {
 /* pocitani skore */
 
 function increaseScore() {
-  game.score++
-  game.scoreElement.textContent = `${game.score}/7`
+  game.score++;
+  game.scoreElement.textContent = `${game.score}/7`;
 }
