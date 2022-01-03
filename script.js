@@ -66,6 +66,8 @@ let board = [
 let game = {
   timeElement: document.getElementById('time'),
   scoreElement: document.getElementById('score'),
+  endElement: document.querySelector('#end'),
+  videoElement: document.querySelector('#end video'),
   score: 0,
   time: 0,
 };
@@ -115,7 +117,7 @@ function startGame() {
   game.time = 60;
   createitems();
   draw();
-  timer()
+  timer();
 }
 
 function timer() {
@@ -124,12 +126,24 @@ function timer() {
       minutes,
       seconds;
 
-    setInterval(function () {
+    let time = setInterval(function () {
       minutes = parseInt(timer / 60, 10);
       seconds = parseInt(timer % 60, 10);
 
       minutes = minutes < 10 ? '0' + minutes : minutes;
       seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      //výhra
+      if (game.score === 6) {
+        endGame('win');
+        clearInterval(time);
+      }
+
+      //prohra
+      if (timer === 0) {
+        endGame('loss');
+        clearInterval(time);
+      }
 
       display.innerText = minutes + ':' + seconds;
 
@@ -140,6 +154,20 @@ function timer() {
   }
 
   startTimer(game.time, game.timeElement);
+}
+
+function endGame(type) {
+  if (type === 'win') {
+    game.videoElement.src = 'animations/codemas vyhra.mp4';
+  }
+
+  if (type === 'loss') {
+    game.videoElement.src = 'animations/codemas prohra.mp4';
+  }
+
+  canvas.style.display = 'none';
+  // způsob zobrazení elementu
+  game.endElement.style.display = 'block';
 }
 
 window.addEventListener('load', startGame);
